@@ -1,0 +1,30 @@
+/*
+============================================
+; Title:  about.component.css
+; Author: Professor Krasso
+; Date: 12 March 2022
+; Modified By: K. Hall
+; Description: Styling file for the about component.
+;===========================================
+*/
+.photo-container {
+  margin-top: 10%;
+  margin-left: 8%;
+}
+.about-text-container {
+  margin-left: -5%;
+  margin-top: 7%;
+}
+.caption {
+  margin-left: 53px;
+}
+.fx-container {
+  height: 1210px;
+}
+.about-txt {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: .6px;
+  line-height: 1.7;
+  width: 80%;
+  margin-top:25px;
+}

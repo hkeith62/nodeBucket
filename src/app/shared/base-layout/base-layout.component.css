@@ -1,40 +1,62 @@
+/*
+============================================
+; Title:  base-layout.component.css
+; Author: Professor Krasso
+; Date: 25 March 2022
+; Modified By: K. Hall
+; Description: Style sheet for the base-layout component.
+;===========================================
+*/
+
+/* Navbar styles */
 .logo {
-    margin-left: 75px;
-    font-size: 24px;
-    font-weight: lighter;;
-  }
-  
-  .navbar-container {
-    padding: 5px;
-  }
-  
-  .navbar-link {
-    font-size: 24px;
-    font-weight: lighter;
-  }
-  
-  .main-content {
-    padding-left: 30px;
-  }
-  
-  .footer {
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-  }
-  
-  .footer-content {
-    font-size: 16px;
-    font-weight: lighter;
-    padding-left: 100px;
-    letter-spacing: 3px;
-  }
-  
-  .bu-link {
-    text-decoration: none;
-  }
-  
-  .bu-link:hover {
-    text-decoration: underline;
-  }
-  
+  margin-left: 65px;
+  font-size: 24px;
+  font-weight: lighter;;
+}
+.logo-container {
+  margin-top: 4%;
+}
+.navbar-container {
+  width: 100%;
+  padding: 5px;
+  margin-top: -.3%;
+}
+.link-container {
+  margin-left: 45%;
+}
+.navbar-link {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: Roboto;
+}
+.profile-menu-container {
+  margin-right: 75px;
+}
+/* Main content area */
+
+.main-content {
+  padding-left: 30px;
+}
+/* Footer */
+
+.footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.footer-content {
+  font-size: 16px;
+  font-weight: lighter;
+  padding-left: 100px;
+  letter-spacing: 3px;
+  margin-left: 43%;
+  margin-bottom: 5.2%;
+
+}
+.bu-link {
+  text-decoration: none;
+}
+.bu-link:hover {
+  text-decoration: underline;
+}

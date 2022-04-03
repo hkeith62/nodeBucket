@@ -1,36 +1,56 @@
+<!--
+    Title: base-layout.component.html
+    Author: Professor Krasso
+    Date: 25 March 2022
+    Modified By: Keith Hall
+    Description: Base layout html file for Nodebucket App.
+-->
 <div fxLayout="column">
 
-    <!-- navigation -->
-    <nav fxFlex>
-      <mat-toolbar>
-        <!-- navbar container -->
-        <div class="navbar-container">
-          <!-- logo -->
-          <button class="logo" routerLink="/" mat-button>nodebucket</button>
+  <!-- navigation -->
+  <nav fxFlex class="navbar-container" >
 
-          <button class="navbar-link" routerLink="/" mat-button>Home</button>
-          <button class="navbar-link" mat-button>About</button>
-        </div>
+    <mat-toolbar>
 
-      </mat-toolbar>
-    </nav>
+      <div class="logo-container" fxLayout="row" gdAlignRows="start" >
 
-    <!-- main content -->
-    <div fxFlex>
-      <main class="main-content" fxFlex="100%;">
-        <router-outlet></router-outlet>
-      </main>
+        <!-- logo -->
+        <img fxFlex="nogrow" src="../assets/nodebucketlogo.png" routerLink="/" width="200px" height="120px" id="logo">
+      </div>
+
+      <!-- Nav links -->
+      <div fxLayout="row" class="link-container">
+        <div><button class="navbar-link" routerLink="/" mat-button>Home</button></div>
+        <div><button class="navbar-link" routerLink="/how-it-works" mat-button>How it works</button></div>
+        <div><button class="navbar-link" routerLink="/about" mat-button>About</button></div>
+        <div><button class="navbar-link" routerLink="/contact" mat-button>Contact</button></div>
+      </div>
+      <div fxFlex></div>
+
+      <!-- Profile menu -->
+      <div class="profile-menu-container">
+        <button mat-icon-button aria-label="user profile menu"><mat-icon i class="material-icons md-36" >perm_identity</mat-icon></button>
     </div>
 
-    <!-- footer -->
-    <div fxFlex>
-      <footer class="footer">
-        <mat-toolbar class="footer-content">
-          <p>
-            &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
-          </p>
-        </mat-toolbar>
-      </footer>
-    </div>
+    </mat-toolbar>
+  </nav>
 
+  <!-- main content -->
+  <div fxFlex>
+    <main class="main-content" fxFlex="100%;">
+      <router-outlet></router-outlet>
+    </main>
   </div>
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+      <mat-toolbar class="footer-content">
+        <p>
+          &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
+        </p>
+      </mat-toolbar>
+    </footer>
+  </div>
+
+</div>

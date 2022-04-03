@@ -1,0 +1,47 @@
+<!--
+    Title: sign-in.component.html
+    Author: Professor Krasso
+    Date: 02/04/2022
+    Modified By: Keith Hall
+    Description: Sign-in component HTML markup file for Nodebucket.
+-->
+<div fxLayout="column">
+
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar>
+      <!-- navbar container -->
+      <div class="navbar-container">
+        <!-- logo -->
+        <button class="logo" routerLink="/" mat-button>nodebucket</button>
+
+        <button class="navbar-link" routerLink="/" mat-button>Home</button>
+        <button class="navbar-link" mat-button>About</button>
+
+      </div>
+    </mat-toolbar>
+  </nav>
+  <div class="main-container" fxLayout="column">
+
+      <mat-card fxFlex class="sign-in-container">
+        <mat-card-title class="blue">Sign In</mat-card-title><br />
+        <mat-card-subtitle>You must enter a valid Employee ID to proceed.</mat-card-subtitle>
+        <br />
+        <mat-card-content>
+          <div class="msg-error" *ngIf="errorMessage">{{ errorMessage }}</div>
+              <form [formGroup]="form" (ngSubmit)="onSubmit(); form.reset()">
+                  <mat-card-content>
+                      <mat-form-field>
+                          <input matInput [formControl]="form.controls['empId']" placeholder="Employee Id" />
+                      </mat-form-field>
+                  </mat-card-content>
+                     <mat-card-actions>
+                        <button type="submit" fxFlex mat-raised-button color="primary" [disabled]="!form.valid" >Sign In</button>
+                     </mat-card-actions>
+              </form>
+
+        </mat-card-content>
+      </mat-card>
+
+  </div>
+  </div>

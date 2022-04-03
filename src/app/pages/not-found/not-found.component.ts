@@ -1,20 +1,20 @@
 /*
 ============================================
-; Title:  home.component.ts
+; Title:  not-found.component.ts 
 ; Author: Professor Krasso
 ; Date: 25 March 2022
 ; Modified By: K. Hall
-; Description: TS file for the home component.
+; Description: Not-found component for Nodebucket.  
 ;===========================================
 */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-not-found',
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.css']
 })
-export class HomeComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
 
   constructor() { }
 

@@ -1,20 +1,21 @@
 /*
 ============================================
-; Title:  home.component.ts
+; Title:  contact.component.ts
 ; Author: Professor Krasso
-; Date: 25 March 2022
+; Date: 01 April 2022
 ; Modified By: K. Hall
-; Description: TS file for the home component.
+; Description: TS file for contact component.
 ;===========================================
 */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ContactComponent implements OnInit {
 
   constructor() { }
 
