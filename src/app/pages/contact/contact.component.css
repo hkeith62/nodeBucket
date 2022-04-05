@@ -11,6 +11,11 @@
   margin-top: 10%;
   margin-left: 8%;
 }
+h1 {
+  font-weight: 400;
+  font-family: Roboto;
+  font-size: 34px;
+ }
 .contact-text-container {
   margin-left: -5%;
   margin-top: 7%;
@@ -19,12 +24,12 @@
   margin-left: 53px;
 }
 .fx-container {
-  height: 1210px;
+  height: 1410px;
+}
+.icon-container {
+  margin-top: 6%;
 }
 .contact-txt {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  letter-spacing: .6px;
-  line-height: 1.7;
-  width: 80%;
   margin-top:25px;
+  margin-left: -38%;
 }

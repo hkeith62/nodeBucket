@@ -1,22 +1,22 @@
- /*
+/*
 ============================================
-; Title:  sign-in.service.spec.ts
+; Title: employee.service.spec.ts
 ; Author: Professor Krasso
-; Date: 25 March 2022
-; Modified By: K. Hall
-; Description: Sign-in service test file for nodebucket app.
+; Date: 01 April 2022
+; Modified by: K. Hall
+; Description: Test file for the Employee task service  
 ;===========================================
 */
 import { TestBed } from '@angular/core/testing';
 
-import { SignInService } from './sign-in.service';
+import { EmployeeService } from './employee.service';
 
-describe('SignInService', () => {
-  let service: SignInService;
+describe('EmployeeService', () => {
+  let service: EmployeeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SignInService);
+    service = TestBed.inject(EmployeeService);
   });
 
   it('should be created', () => {

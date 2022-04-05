@@ -24,11 +24,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { EmployeeService } from './shared/services/employee.service';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -41,7 +47,8 @@ import { ContactComponent } from './pages/contact/contact.component';
     SignInComponent,
     HowItWorksComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    CreateTaskDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,9 +62,12 @@ import { ContactComponent } from './pages/contact/contact.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    DragDropModule,
+	MatSnackBarModule
   ],
-  providers: [],
+  providers: [CookieService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

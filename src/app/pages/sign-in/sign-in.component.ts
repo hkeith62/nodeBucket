@@ -7,12 +7,13 @@
 ; Description: Sign-in component for NodeBucket App.
 ;===========================================
 */
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Validators }  from '@angular/forms';
-import { SignInService } from '../../sign-in.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -25,26 +26,36 @@ export class SignInComponent implements OnInit {
   form: FormGroup;
   errorMessage: string;
 
-
-  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder, private signinService: SignInService) { }
+  constructor(private router: Router, private cookieService: CookieService, private fb: FormBuilder,
+  private http: HttpClient) { }
 
   ngOnInit(): void {
 
+ // Pattern validation of the password entered
     this.form = this.fb.group({
 
       empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])]
     })
   }
-
+ // Sign in
   onSubmit() {
-    const formValues = this.form.value;
-    const empId = parseInt(formValues.empId);
 
-    if (this.signinService.validate(empId)) {
-      this.cookieService.set('session_user', empId.toString(), 1)
-      this.router.navigate(['/']) // When user signs in they are routed to the invoicing page.
-    } else {
-      this.errorMessage = `The employee ID you entered is invalid, please try again.`;
-    }
+     const empId = this.form.controls['empId'].value;
+
+  // get the empId from the form
+    this.http.get('/api/employees/' + empId).subscribe((res) => {
+
+      if (res) {
+        sessionStorage.setItem(
+          'name',
+          `${res['firstName']} ${res['lastName']}`
+        );
+                 // set the cookie
+        this.cookieService.set('session_user', empId, 1);
+        this.router.navigate(['/']); // redirect to the home page
+      } else {
+        this.errorMessage = 'Invalid id, Please try again'; // set the error message
+      }
+    });
   }
 }
