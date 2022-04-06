@@ -44,11 +44,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BaseLayoutComponent,
     AuthLayoutComponent,
     NotFoundComponent,
-    SignInComponent,
     HowItWorksComponent,
     AboutComponent,
     ContactComponent,
-    CreateTaskDialogComponent
+    CreateTaskDialogComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
