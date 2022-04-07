@@ -1,13 +1,3 @@
-/*
-============================================
-; Title:  main.ts
-; Author: Professor Krasso
-; Date: 16 March 2022
-; Modified By: K. Hall
-; Description: main.ts file for nodebucket.
-;===========================================
-*/
-
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

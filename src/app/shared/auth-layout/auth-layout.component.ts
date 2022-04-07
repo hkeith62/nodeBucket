@@ -1,12 +1,3 @@
-/*
-============================================
-; Title:  auth-layout.component.ts
-; Author: Professor Krasso
-; Date: 25 March 2022
-; Modified By: K. Hall
-; Description: Auth-layout component for Nodebucket.  
-;===========================================
-*/
 import { Component, OnInit } from '@angular/core';
 
 @Component({

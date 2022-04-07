@@ -1,13 +1,4 @@
-/*
-============================================
-; Title:  app.js
-; Author: Professor Krasso
-; Date: 16 March 2022
-; Modified By: K. Hall
-; Description: App.JS file for Nodebucket
-;===========================================
-*/
- /**
+/**
  * Require statements
  */
 const express = require('express');
@@ -16,7 +7,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
-const EmployeeAPI = require("./routes/employee-api");
 
 /**
  * App configurations
@@ -31,10 +21,10 @@ app.use('/', express.static(path.join(__dirname, '../dist/nodebucket')));
 /**
  * Variables
  */
- const port = process.env.PORT || 3000; // server port
+const port = process.env.PORT || 3000; // server port
 
 // TODO: This line will need to be replaced with your actual database connection string
-const conn = "mongodb+srv://web420_user:hkh0fENnVd7P7TTB@cluster0.hn2i8.mongodb.net/nodebucket";
+const conn = 'mongodb+srv://superadmin:s3cret@cluster0-lujih.mongodb.net/nodebucket?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -52,7 +42,7 @@ mongoose.connect(conn, {
 /**
  * API(s) go here...
  */
- app.use("/api/employees", EmployeeAPI);
+
 /**
  * Create and start server
  */
