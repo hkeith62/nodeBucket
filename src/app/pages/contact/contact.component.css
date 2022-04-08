@@ -15,21 +15,28 @@ h1 {
   font-weight: 400;
   font-family: Roboto;
   font-size: 34px;
+  margin-top: -10px;
  }
-.contact-text-container {
-  margin-left: -5%;
-  margin-top: 7%;
+.about-text-container {
+  margin-left: -1%;
+  margin-top: 9%;
 }
 .caption {
   margin-left: 53px;
 }
 .fx-container {
-  height: 1410px;
+  height: 1210px;
+  margin-left: 12%;
+  margin-top: .5%;
 }
-.icon-container {
-  margin-top: 6%;
+.about-txt {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: .6px;
+  line-height: 1.7;
+  width: 80%;
+  margin-top: -41px;
+  color: black;
 }
-.contact-txt {
-  margin-top:25px;
-  margin-left: -38%;
+.card-title-icon, .mat-icon {
+  font-size: 72px;
 }

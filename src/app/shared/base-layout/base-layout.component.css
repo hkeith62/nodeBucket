@@ -8,19 +8,31 @@
 ;===========================================
 */
 
-.logo {
-  margin-left: 75px;
-  font-size: 24px;
-  font-weight: lighter;
+.logo-container {
+  margin-left: -10px;
+  margin-top: 30px;
+
+}
+.link-container {
+  margin-left: 120%;
+  margin-top: 40px;
+
 }
 
 .navbar-container {
   padding: 5px;
+  margin-top: 35px;
 }
 
 .navbar-link {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: lighter;
+  font-family: Roboto;
+}
+.sign-out-container {
+
+  margin-right: 5%;
+
 }
 
 .main-content {
@@ -38,6 +50,9 @@
   font-weight: lighter;
   padding-left: 100px;
   letter-spacing: 3px;
+  margin-left: 50%;
+  margin-bottom: 1%;
+
 }
 
 .bu-link {

@@ -7,35 +7,35 @@
 -->
 
 <div fxLayout="column">
-
-  <!-- navigation -->
   <nav fxFlex>
+
+    <!-- navigation -->
     <mat-toolbar>
-	
+
       <!-- navbar container -->
       <div class="navbar-container">
-	  
+
         <!-- logo -->
-        <button class="logo" routerLink="/" mat-button>nodebucket</button>
+          <img class="logo-container" fxFlex="nogrow" src="../assets/nodebucketlogo.png" routerLink="/" width="200px" height="120px" id="logo">
 
-        <button class="navbar-link" routerLink="/about" mat-button>
-          AboutUs
-        </button>
-        <button routerLink="contact" class="navbar-link" mat-button>
-          Contact Us
-        </button>
+        <!-- Nav links -->
+        <div fxLayout="row" class="link-container">
+        <div><button class="navbar-link" routerLink="/" mat-button>Home</button></div>
+        <div><button class="navbar-link" routerLink="/how-it-works" mat-button>How it works</button></div>
+        <div><button class="navbar-link" routerLink="/about" mat-button>About</button></div>
+        <div><button class="navbar-link" routerLink="/contact" mat-button>Contact</button></div>
+        </div>
       </div>
-
       <div fxFlex></div>
 
       <!-- profile menu -->
-      <div *ngIf="isLoggedIn">
+      <div *ngIf="isLoggedIn" class="sign-out-container">
         <button
           mat-icon-button
           [matMenuTriggerFor]="profileMenu"
           aria-label="user profile menu"
         >
-          <mat-icon>perm_identity</mat-icon>
+          <mat-icon color="primary" i class="material-icons md-36">perm_identity</mat-icon>
         </button>
 
         <mat-menu #profileMenu="matMenu">
