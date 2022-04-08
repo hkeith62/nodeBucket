@@ -1,7 +1,23 @@
-import { HomeComponent } from './pages/home/home.component';
-import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
+/*
+============================================
+; Title:  app-routing.module.ts
+; Author: Professor Krasso
+; Date: 25 March 2022
+; Modified By: K. Hall
+; Description: App routing module for NodeBucket App.
+;===========================================
+*/
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 
 const routes: Routes = [
   {
@@ -11,13 +27,47 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
-      }
-    ]
-  }
+      },
+	  {
+		path: 'how-it-works',
+		component: HowItWorksComponent
+	  },
+	   {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+    ],
+  },
+  {
+    path: 'session',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'sign-in',
+        component: SignInComponent,
+      },
+      {
+        path: 'not-found',
+        component: NotFoundComponent,
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: 'session/not-found',
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled',
+      relativeLinkResolution: 'legacy',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

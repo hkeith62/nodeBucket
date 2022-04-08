@@ -1,0 +1,35 @@
+/*
+============================================
+; Title:  contact.component.css
+; Author: Professor Krasso
+; Date: 01 April 2022
+; Modified By: K. Hall
+; Description: Styling file for the contact component.
+;===========================================
+*/
+.photo-container {
+  margin-top: 10%;
+  margin-left: 8%;
+}
+h1 {
+  font-weight: 400;
+  font-family: Roboto;
+  font-size: 34px;
+ }
+.contact-text-container {
+  margin-left: -5%;
+  margin-top: 7%;
+}
+.caption {
+  margin-left: 53px;
+}
+.fx-container {
+  height: 1410px;
+}
+.icon-container {
+  margin-top: 6%;
+}
+.contact-txt {
+  margin-top:25px;
+  margin-left: -38%;
+}

@@ -1,4 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+============================================
+; Title:  styles.css
+; Author: Professor Krasso
+; Date: 16 March 2022
+; Modified By: K. Hall
+; Description: Global styles sheet for nodebucket app.
+;===========================================
+*/
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+height: 100%; 
+}
+body { 
+margin: 0; 
+font-family: Roboto, "Helvetica Neue", sans-serif; }
