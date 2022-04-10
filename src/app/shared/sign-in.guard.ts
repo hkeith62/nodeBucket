@@ -9,8 +9,7 @@
 */
 
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
+import { CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
@@ -23,7 +22,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 // Authentication
-export class AuthGuard implements CanActivate {
+export class SignInGuard implements CanActivate {
   constructor(private router: Router, private cookieService: CookieService) {}
 
   // Check if the user is authenticated
@@ -35,7 +34,7 @@ export class AuthGuard implements CanActivate {
       return true; // Allow use to navigate
     } else {
       // Take to the sign-in page
-      this.router.navigate(['/session/signin']);
+      this.router.navigate(['/session/sign-in']);
       return false;
     }
   }

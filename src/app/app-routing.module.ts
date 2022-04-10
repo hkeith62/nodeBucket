@@ -13,6 +13,7 @@ import { BaseLayoutComponent } from './shared/base-layout/base-layout.component'
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SignInGuard } from './shared/sign-in.guard';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { ContactComponent } from './pages/contact/contact.component';
