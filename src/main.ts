@@ -4,7 +4,7 @@
 ; Author: Professor Krasso
 ; Date: 16 March 2022
 ; Modified By: K. Hall
-; Description: main.ts file for nodebucket.
+; Description: Main.ts file for nodebucket.
 ;===========================================
 */
 

@@ -7,24 +7,26 @@
 ; Description: Styling file for the about component.
 ;===========================================
 */
+
  h1 {
   font-weight: 400;
   font-family: Roboto;
   font-size: 34px;
  }
 .photo-container {
-  margin-top: 10%;
+  margin-top: 15%;
   margin-left: 8%;
 }
 .about-text-container {
-  margin-left: -5%;
-  margin-top: 7%;
+  margin-left: 1%;
+  margin-top: 11%;
 }
 .caption {
   margin-left: 53px;
 }
 .fx-container {
   height: 1210px;
+  margin-left: 12%;
 }
 .about-txt {
   font-family: Roboto, "Helvetica Neue", sans-serif;

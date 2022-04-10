@@ -1,6 +1,6 @@
 /*
 ============================================
-; Title: employee.service.ts
+; Title: task.service.ts
 ; Author: Professor Krasso
 ; Date: 01 April 2022
 ; Modified by: K. Hall
@@ -11,27 +11,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Item } from '../models/item.interface';
+import { Item } from '../interfaces/item.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class EmployeeService {
+export class TaskService {
   constructor(private http: HttpClient) {}
 
-  // Calls the findAllTasks API with Node.js server
+  // Calls findAllTasks API with the Node.js server
+
   findAllTasks(empId: number): Observable<any> {
     return this.http.get('/api/employees/' + empId + '/tasks');
   }
-  // Calls the creatTask API
 
+  // Calls create task API
   createTask(empId: number, task: string): Observable<any> {
     return this.http.post('/api/employees/' + empId + '/tasks', {
       text: task,
     });
   }
 
-  // Calls the updateTask API
+  // Updates task through the api and returns the updated list
   updateTask(empId: number, todo: Item[], done: Item[]): Observable<any> {
     return this.http.put('/api/employees/' + empId + '/tasks', {
       todo,
@@ -39,7 +40,7 @@ export class EmployeeService {
     });
   }
 
-  // Delete task through the api to the database and return the updated list
+  // Calls the delete task api and returns the updated list
   deleteTask(empId: number, taskId: string): Observable<any> {
     return this.http.delete('/api/employees/' + empId + '/tasks/' + taskId);
   }

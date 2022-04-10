@@ -7,6 +7,7 @@
 ; Description: Auth-layout component for Nodebucket.  
 ;===========================================
 */
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

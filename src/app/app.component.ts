@@ -7,13 +7,12 @@
 ; Description: App component for NodeBucket App.
 ;===========================================
 */
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   template: `<router-outlet></router-outlet>`,
-  styles: [``]
+  styles: [``],
 })
-export class AppComponent {
-  
-}
+export class AppComponent {}

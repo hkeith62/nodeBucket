@@ -4,21 +4,20 @@
 ; Author: Professor Krasso
 ; Date: 25 March 2022
 ; Modified By: K. Hall
-; Description: App routing module for NodeBucket App.
+; Description: App routing module for nodebucket app.
 ;===========================================
 */
 
-import { SignInGuard} from './shared/sign-in.guard';
-import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -29,10 +28,6 @@ const routes: Routes = [
         path: '',
         component: HomeComponent
       },
-	  {
-		path: 'home',
-		component: HomeComponent
-	  },
       {
         path: 'how-it-works',
         component: HowItWorksComponent
@@ -45,13 +40,12 @@ const routes: Routes = [
         path: 'contact',
         component: ContactComponent
       },
-    ]
+    ],
   },
   {
     path: 'session',
     component: AuthLayoutComponent,
     children: [
-      // Login route
       {
         path: 'sign-in',
         component: SignInComponent
@@ -60,13 +54,12 @@ const routes: Routes = [
         path: 'not-found',
         component: NotFoundComponent
       },
-    ]
+    ],
   },
-  // Handles routes that do not match
   {
     path: '**',
-    redirectTo: '/session/not-found'
-  }
+    redirectTo: 'session/not-found',
+  },
 ];
 
 @NgModule({
@@ -75,8 +68,9 @@ const routes: Routes = [
       useHash: true,
       enableTracing: false,
       scrollPositionRestoration: 'enabled',
-      relativeLinkResolution: 'legacy'
-    })],
-  exports: [RouterModule]
+      relativeLinkResolution: 'legacy',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

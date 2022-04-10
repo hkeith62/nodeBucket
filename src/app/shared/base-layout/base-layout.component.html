@@ -5,33 +5,48 @@
     Modified By: Keith Hall
     Description: Base layout html file for Nodebucket App.
 -->
+
 <div fxLayout="column">
+  <nav fxFlex>
 
-  <!-- navigation -->
-  <nav fxFlex class="navbar-container" >
-
+    <!-- navigation -->
     <mat-toolbar>
 
-      <div class="logo-container" fxLayout="row" gdAlignRows="start" >
+      <!-- navbar container -->
+      <div class="navbar-container">
 
         <!-- logo -->
-        <img fxFlex="nogrow" src="../assets/nodebucketlogo.png" routerLink="/" width="200px" height="120px" id="logo">
-      </div>
+          <img class="logo-container" fxFlex="nogrow" src="../assets/nodebucketlogo.png" routerLink="/" width="200px" height="120px" id="logo">
 
-      <!-- Nav links -->
-      <div fxLayout="row" class="link-container">
+        <!-- Nav links -->
+        <div fxLayout="row" class="link-container">
         <div><button class="navbar-link" routerLink="/" mat-button>Home</button></div>
         <div><button class="navbar-link" routerLink="/how-it-works" mat-button>How it works</button></div>
         <div><button class="navbar-link" routerLink="/about" mat-button>About</button></div>
         <div><button class="navbar-link" routerLink="/contact" mat-button>Contact</button></div>
+        </div>
       </div>
       <div fxFlex></div>
 
-      <!-- Profile menu -->
-      <div class="profile-menu-container">
-        <button mat-icon-button aria-label="user profile menu"><mat-icon color="primary" i class="material-icons md-36" >perm_identity</mat-icon></button>
-    </div>
+      <!-- profile menu -->
+      <div *ngIf="isLoggedIn" class="sign-out-container">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="profileMenu"
+          aria-label="user profile menu"
+        >
+          <mat-icon color="primary" i class="material-icons md-36">perm_identity</mat-icon>
+        </button>
 
+        <mat-menu #profileMenu="matMenu">
+          <p style="padding: 10px">Signed in as {{ name }}</p>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="signOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Sign out</span>
+          </button>
+        </mat-menu>
+      </div>
     </mat-toolbar>
   </nav>
 
@@ -47,10 +62,12 @@
     <footer class="footer">
       <mat-toolbar class="footer-content">
         <p>
-          &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
+          &copy; {{ year | date: "yyyy" }} - nodebucket -
+          <a href="https://www.bellevue.edu/" class="bu-link" target="_blank"
+            >Bellevue University</a
+          >
         </p>
       </mat-toolbar>
     </footer>
   </div>
-
 </div>

@@ -1,4 +1,4 @@
- <!--
+<!--
     Title: create-task-dialog.component.html
     Author: Professor Krasso
     Date: 25 March 2022
@@ -6,17 +6,23 @@
     Description: Html file for the create-task-dialog component.
 -->
 
- <h2 mat-dialog-title>Add a new task</h2>
+<h2 mat-dialog-title>Add new task item</h2>
 
- <mat-dialog-content [formGroup]="dialogForm">
-   <mat-form-field style="width: 200px">
-     <input type="text" placeholder="Enter a todo list item..." matInput formControlName="text" (keydown.enter)="createTask()"/>
-   </mat-form-field>
- </mat-dialog-content>
+<mat-dialog-content [formGroup]="taskForm">
+  <mat-form-field style="width: 200px">
+    <input
+      type="text"
+      placeholder="Enter a task name..."
+      matInput
+      formControlName="text"
+      (keydown.enter)="createTask()"
+    />
+  </mat-form-field>
+</mat-dialog-content>
 
- <mat-dialog-actions align="end">
-   <button mat-button (click)="cancel()">Cancel</button>
-   <button mat-button [disabled]="!dialogForm.valid" (click)="createTask()">Create Task
-   </button>
- </mat-dialog-actions>
-
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [disabled]="!taskForm.valid" (click)="createTask()">
+    Create Task
+  </button>
+</mat-dialog-actions>

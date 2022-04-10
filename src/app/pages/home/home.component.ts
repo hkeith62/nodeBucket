@@ -2,20 +2,24 @@
 ============================================
 ; Title:  home.component.ts
 ; Author: Professor Krasso
-; Date: 25 March 2022
-; Modified By: K. Hall
-; Description: TS file for the home component.
+; Modified by: Kevin Jones
+; Date: 25 Aug 2021
+; Description: Home component TS file
 ;===========================================
 */
 
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../shared/models/employee.interface';
-import { Item } from '../../shared/models/item.interface';
+import { Employee } from '../../shared/interfaces/employee.interface';
+import { Item } from '../../shared/interfaces/item.interface';
 import { CookieService } from 'ngx-cookie-service';
-import { EmployeeService } from './../../shared/services/employee.service';
+import { TaskService } from './../../shared/services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskDialogComponent } from './../../shared/create-task-dialog/create-task-dialog.component';
-import { CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -24,36 +28,35 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angular/cdk/dr
 })
 export class HomeComponent implements OnInit {
   employee: Employee;
-
-  // Task arrays
   todo: Item[];
   done: Item[];
   empId: number;
 
-  // Inject the employee service, cookie service, and dialog service
-  constructor( private employeeService: EmployeeService, private cookieService: CookieService, private dialog: MatDialog) {
+  // Inject the task service, cookie service, and dialog service
+  constructor(
+    private taskService: TaskService,
+    private cookieService: CookieService,
+    private dialog: MatDialog
+  ) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
 
-    // Use the employee service to findAllTasks
-    this.employeeService.findAllTasks(this.empId).subscribe(
-
+    // make call to task service findAllTasks
+    this.taskService.findAllTasks(this.empId).subscribe(
       (res) => {
         console.log('--Server response from findAllTasks API --');
         console.log(res);
-
-        // Set arrays to the server response
+        // set the todo and done arrays to the server response
         this.employee = res;
         console.log('-- Employee Object');
         console.log(this.employee);
       },
-      // Error handling
+      // error handling
       (err) => {
         console.log('--Server error--');
         console.log(err);
       },
       () => {
-
-        // Set the todo and done arrays to the server response
+        // set the todo and done arrays to the server response
         console.log('--onComplete of the findAllTasks service call--');
         this.todo = this.employee.todo;
         this.done = this.employee.done;
@@ -66,36 +69,35 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
   ngOnInit(): void {}
 
-  // Open the dialog
+  // open the dialog to create a new task
   openCreateTaskDialog() {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       disableClose: true,
     });
 
-    // After dialog closes, call Employee service to create a new task.
+    // when the dialog is closed, make a call to the task service to create a new task
     dialogRef.afterClosed().subscribe((data) => {
-
+      // if the user clicked the create task button
       if (data) {
-        this.employeeService.createTask(this.empId, data.text).subscribe(
-
-          // If the server response is successful
+        // make a call to the task service to create a new task
+        this.taskService.createTask(this.empId, data.text).subscribe(
+          // if the server response is successful
           (res) => {
-
+            // set the todo and done arrays to the server response
             this.employee = res;
           },
-
-          // If the server response is not successful
+          // if the server response is not successful
           (err) => {
             console.log('--onError of the createTask service call--');
-
-            // Log the error
+            // log the error
             console.log(err);
           },
-
+          // if the server response is successful
           () => {
-            // Set task arrays to the server response
+            // set the todo and done arrays to the server response
             this.todo = this.employee.todo;
             this.done = this.employee.done;
           }
@@ -104,11 +106,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // drop function for the todo list
   drop(event: CdkDragDrop<any[]>) {
-
+    // if the item is dropped in the todo list
     if (event.previousContainer === event.container) {
-
-      // Move the new item in the todo list to the done column and update the todo list in MongoDB
+      // move the item in the todo list to the done list and update the task list in the database
       moveItemInArray(
         event.container.data,
         event.previousIndex,
@@ -117,13 +119,11 @@ export class HomeComponent implements OnInit {
 
       console.log('Reordered the existing list of task items.');
 
-      // Update the todo column with the new order
+      // update the task list in the database with the new order of the todo list
       this.updateTaskList(this.empId, this.todo, this.done);
-
-      // If the item is dropped in the done column
+      // if the item is dropped in the done list
     } else {
-
-      // Move the todo item and update
+      // move the item in the done list to the todo list and update the task list in the database
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -132,59 +132,59 @@ export class HomeComponent implements OnInit {
       );
 
       console.log('Moved task item into the other container');
-
-      // Update MongoDB with the new order of the done list
+      // update the task list in the database with the new order of the done list
       this.updateTaskList(this.empId, this.todo, this.done);
     }
   }
- // Delete function for the todo list.
- deleteTask(taskId: string): void {
 
-  // Confirm that the user wants to delete the task.
-  if (confirm('Are you sure you want to delete this task?')) {
+  // delete function for the list
+  deleteTask(taskId: string): void {
+    // confirm the user wants to delete the task
+    if (confirm('Are you sure you want to delete this task?')) {
+      // make a call to the task service to delete the task
+      if (taskId) {
+        console.log(`Task item: ${taskId} was deleted`);
 
-    // Call the Employee service to delete the task
-    if (taskId) {
-      console.log(`Task item: ${taskId} was deleted`);
-
-      this.employeeService.deleteTask(this.empId, taskId).subscribe(
-
-        // If the server response is successful, set task arrays to the server response.
-        (res) => {
-          this.employee = res.data;
-        },
-        (err) => {
-          console.log(err);
-        },
-        () => {
-
-          // Set the todo and done arrays to the server response
-          this.todo = this.employee.todo;
-          this.done = this.employee.done;
-        }
-      );
+        this.taskService.deleteTask(this.empId, taskId).subscribe(
+          // if the server response is successful
+          (res) => {
+            // set the todo and done arrays to the server response
+            this.employee = res.data;
+          },
+          // if the server response is not successful
+          (err) => {
+            // log the error
+            console.log(err);
+          },
+          () => {
+            // set the todo and done arrays to the server response
+            this.todo = this.employee.todo;
+            this.done = this.employee.done;
+          }
+        );
+      }
     }
   }
-}
 
-// Update function for the todo list
-private updateTaskList(empId: number, dodo: Item[], done: Item[]): void {
-
-  // Call the Employee service to update the task list
-  this.employeeService.updateTask(this.empId, this.todo, this.done).subscribe(
-
-    // If the server response is successful, set the task arrays to the server response
-    (res) => {
-      this.employee = res.data;
-    },
-    (err) => {
-      console.log(err);
-    },
-    () => {
-
-      this.todo = this.employee.todo;
-      this.done = this.employee.done;
-    }
-  );
-}
+  // update function for the task list
+  private updateTaskList(empId: number, dodo: Item[], done: Item[]): void {
+    // make a call to the task service to update the task list
+    this.taskService.updateTask(this.empId, this.todo, this.done).subscribe(
+      // if the server response is successful
+      (res) => {
+        // set the todo and done arrays to the server response
+        this.employee = res.data;
+      },
+      // if the server response is not successful
+      (err) => {
+        // log the error
+        console.log(err);
+      },
+      () => {
+        // set the todo and done arrays to the server response
+        this.todo = this.employee.todo;
+        this.done = this.employee.done;
+      }
+    );
+  }
 }
