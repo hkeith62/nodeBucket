@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
 
- // Pattern validation of the password entered
+ // Validates the password entered by regEx pattern
     this.form = this.fb.group({
 
       empId: [null, Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])]
@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
 
      const empId = this.form.controls['empId'].value;
 
-  // get the empId from the form
+  // Get the empId from the form
     this.http.get('/api/employees/' + empId).subscribe((res) => {
 
       if (res) {
@@ -50,11 +50,11 @@ export class SignInComponent implements OnInit {
           'name',
           `${res['firstName']} ${res['lastName']}`
         );
-                 // set the cookie
+                 // Set the browser cookie
         this.cookieService.set('session_user', empId, 1);
-        this.router.navigate(['/']); // redirect to the home page
+        this.router.navigate(['/']); // Navigate user to the home page after signing in.
       } else {
-        this.errorMessage = 'Invalid id, Please try again'; // set the error message
+        this.errorMessage = 'Invalid id, Please try again';  
       }
     });
   }

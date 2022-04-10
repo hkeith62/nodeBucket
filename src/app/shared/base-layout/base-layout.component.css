@@ -8,38 +8,35 @@
 ;===========================================
 */
 
-/* Navbar styles */
-.logo {
-  margin-left: 65px;
-  font-size: 24px;
-  font-weight: lighter;;
-}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
 .logo-container {
-  margin-top: 4%;
-}
-.navbar-container {
-  width: 100%;
-  padding: 5px;
-  margin-top: -.3%;
+  margin-left: -10px;
+  margin-top: 30px;
 }
 .link-container {
-  margin-left: 45%;
+  margin-left: 133%;
+  margin-top: 40px;
+
+}
+.navbar-container {
+  padding: 5px;
+  margin-top: 35px;
 }
 .navbar-link {
   font-size: 16px;
-  font-weight: 300;
+  font-weight: lighter;
   font-family: Roboto;
 }
-.profile-menu-container {
-  margin-right: 75px;
+.sign-out-container {
+  margin-right: 1%;
 }
-/* Main content area */
-
 .main-content {
   padding-left: 30px;
 }
-/* Footer */
-
 .footer {
   bottom: 0;
   position: absolute;
@@ -50,8 +47,8 @@
   font-weight: lighter;
   padding-left: 100px;
   letter-spacing: 3px;
-  margin-left: 43%;
-  margin-bottom: 5.2%;
+  margin-left: 50%;
+  margin-bottom: 1%;
 
 }
 .bu-link {

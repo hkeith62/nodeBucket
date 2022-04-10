@@ -7,6 +7,7 @@
 ; Description: App module for NodeBucket App.
 ;===========================================
 */
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,20 +23,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
-import { EmployeeService } from './shared/services/employee.service';
-import { MatDialogModule } from '@angular/material/dialog';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
+import { CookieService } from 'ngx-cookie-service';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { TaskService } from './shared/services/task.service';
 
 @NgModule({
   declarations: [
@@ -43,12 +45,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomeComponent,
     BaseLayoutComponent,
     AuthLayoutComponent,
-    NotFoundComponent,
     SignInComponent,
-    HowItWorksComponent,
-    AboutComponent,
+    CreateTaskDialogComponent,
     ContactComponent,
-    CreateTaskDialogComponent
+    AboutComponent,
+    NotFoundComponent,
+    HowItWorksComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,16 +60,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatFormFieldModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
+    MatMenuModule,
     MatDialogModule,
+    MatDividerModule,
     DragDropModule,
-	MatSnackBarModule
   ],
-  providers: [CookieService, EmployeeService],
-  bootstrap: [AppComponent]
+  providers: [CookieService, TaskService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

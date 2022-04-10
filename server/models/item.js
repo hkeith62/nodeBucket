@@ -8,16 +8,12 @@
 ;===========================================
 */
 
-//Require mongoose
-const mongoose = require('mongoose');
-
-// Create item schema
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// define the item schema
 let itemSchema = new Schema({
-    text: {type: String}
+  text: { type: String },
 });
 
-// Export model
 module.exports = itemSchema;
-

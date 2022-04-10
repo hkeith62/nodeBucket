@@ -1,30 +1,27 @@
 /*
 *============================
 ; Title:  employee.js
-; Author: Richard Krasso
+; Author: Professor Krasso
 ; Date: 16 March 2022
 ; Modified by: K. Hall
 ; Description: Employee model.
 *=============================
 */
+
 const mongoose = require("mongoose");
-const Item = require('./item');
-
 const Schema = mongoose.Schema;
+const Item = require("./item");
 
-// Employee Schema
-let employeeSchema = new Schema({
-
-    empId: {type: String, required: true, unique: true},
-    firstName: {type: String},
-    lastName: {type: String},
-
-// Item arrays
+// Define our employee schema
+let employeeSchema = new Schema(
+  {
+    empId: { type: String, unique: true },
+    firstName: { type: String },
+    lastName: { type: String },
     todo: [Item],
-    in_progress: [Item],
-    done: [Item]
+    done: [Item],
+  },
+  { collection: "employees" }
+);
 
-}, {collection: 'employees'});
-
-// Exporting The Model
-module.exports = mongoose.model('Employee', employeeSchema); // Mongoose maps employeeSchema to Employee model.
+module.exports = mongoose.model("Employee", employeeSchema);
