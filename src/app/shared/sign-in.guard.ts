@@ -9,17 +9,35 @@
 */
 
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SignInGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
+// Authentication
+export class AuthGuard implements CanActivate {
+  constructor(private router: Router, private cookieService: CookieService) {}
 
+  // Check if the user is authenticated
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const sessionUser = this.cookieService.get('session_user');
+
+    //If the user is not authenticated, redirect to the sign-in page
+    if (sessionUser) {
+      return true; // Allow use to navigate
+    } else {
+      // Take to the sign-in page
+      this.router.navigate(['/session/signin']);
+      return false;
+    }
+  }
 }
+
