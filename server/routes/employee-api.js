@@ -14,35 +14,27 @@ const BaseResponse = require("../models/base-response");
 
 const router = express.Router();
 
-/**
- * get employee by id
- */
+// Get employee by id
 router.get("/:empId", async (req, res) => {
-  /**
-   * find one employee by id using the employee model and mongoose
-   */
+
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, employee) {
-      /**
-       * log any errors to the console and return a 500 error to the user if the database * is unable to find the employee by id or if there is an error in the database
-       */
+
+      // Error handling
       if (err) {
         console.log(err);
         res.status(500).send({
           message: "MongoDB server error: " + err.message,
         });
       } else {
-        /**
-         * return and log the employee object to the console if the database is able to find the employee by id
-         */
+
         console.log(employee);
         res.json(employee);
       }
     });
   } catch (e) {
-    /**
-     * catch any errors and log them to the console
-     */
+
+    //Catch errors and log
     console.log(e);
     res.status(500).send({
       message: "Internal server error: " + e.message,
@@ -50,20 +42,21 @@ router.get("/:empId", async (req, res) => {
   }
 });
 
-/**
- * get all tasks for an employee
- */
+// Get all tasks for an employee by Id
 router.get("/:empId/tasks", async (req, res) => {
+
   try {
     Employee.findOne(
       { empId: req.params.empId },
       "empId todo done",
       function (err, employee) {
+
         if (err) {
           console.log(err);
           res.status(501).send({
             message: "MongoDB server error: " + err.message,
           });
+
         } else {
           console.log(employee);
           res.json(employee);
@@ -78,17 +71,18 @@ router.get("/:empId/tasks", async (req, res) => {
   }
 });
 
-/**
- * create a new task
- */
+// Create a new task
 router.post("/:empId/tasks", async (req, res) => {
+
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, employee) {
+
       if (err) {
         console.log(err);
         res.status(501).send({
           message: "MongoDB Exception: " + err.message,
         });
+
       } else {
         console.log(employee);
         const newTask = {
@@ -96,11 +90,13 @@ router.post("/:empId/tasks", async (req, res) => {
         };
         employee.todo.push(newTask);
         employee.save(function (err, updatedEmployee) {
+
           if (err) {
             console.log(err);
             res.status(501).send({
               message: "MongoDB Exception: " + err.message,
             });
+
           } else {
             console.log(updatedEmployee);
             res.json(updatedEmployee);
@@ -116,11 +112,12 @@ router.post("/:empId/tasks", async (req, res) => {
   }
 });
 
-// update an existing task
+// Update a task
 router.put("/:empId/tasks", async (req, res) => {
+
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, employee) {
-      // if there is an error in the database, return a 500 error
+
       if (err) {
         console.log(err);
         const updateTaskMongoErrorResponse = new BaseResponse(
@@ -129,7 +126,7 @@ router.put("/:empId/tasks", async (req, res) => {
           err
         );
         res.status(501).send(updateTaskMongoErrorResponse.toObject());
-        // if the database is able to find the employee by id then update the task
+
       } else {
         console.log(employee);
         employee.set({
@@ -137,9 +134,9 @@ router.put("/:empId/tasks", async (req, res) => {
           done: req.body.done,
         });
 
-        // save the updated employee
+        // Save the updated employee
         employee.save(function (err, updatedEmployee) {
-          // if there is an error in the database, return a 500 error
+
           if (err) {
             console.log(err);
             const updateTAskMongoOnSaveErrorResponse = new BaseResponse(
@@ -147,7 +144,7 @@ router.put("/:empId/tasks", async (req, res) => {
               "Mongo sever error",
               err
             );
-            // if the database is able to find the employee by id then update the task
+
           } else {
             console.log(updatedEmployee);
             const updatedTaskSuccessResponse = new BaseResponse(
@@ -160,7 +157,6 @@ router.put("/:empId/tasks", async (req, res) => {
         });
       }
     });
-    // catch any errors and log them to the console
   } catch (e) {
     console.log(e);
     const updateTaskServerErrorResponse = new BaseResponse(
@@ -172,12 +168,13 @@ router.put("/:empId/tasks", async (req, res) => {
   }
 });
 
-// delete an existing task
+// Delete a task
 router.delete("/:empId/tasks/:taskId", async (req, res) => {
-  // try to find the employee by id
+
+  // Find the employee by id
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, employee) {
-      // if there is an error in the database, return a 500 error
+
       if (err) {
         console.log(err);
         const deleteTaskMongoErrorResponse = new BaseResponse(
@@ -186,21 +183,25 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
           err
         );
         res.status(501).send(deleteTaskMongoErrorResponse.toObject());
-        // if the database is able to find the employee by id then update the task
+
       } else {
         console.log(employee);
-        // check which array the item is in
+
+        // Check item arrays
         const todoItem = employee.todo.find(
+
           (item) => item._id.toString() === req.params.taskId
         );
         const doneItem = employee.done.find(
           (item) => item._id.toString() === req.params.taskId
         );
-        // if the item is in the todo array, remove it
+
+        // If the item is in the todo array, remove it
         if (todoItem) {
+
           employee.todo.id(todoItem._id).remove();
           employee.save(function (err, updatedTodoItemEmployee) {
-            // if there is an error in the database, return a 500 error
+
             if (err) {
               console.log(err);
               const deleteTodoItemMongoErrorResponse = new BaseResponse(
@@ -209,8 +210,10 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
                 err
               );
               res.status(501).send(deleteTodoItemMongoErrorResponse.toObject());
-              // if the database is able to find the employee by id then update the task
+
+              // Find the employee by id then update the task
             } else {
+
               console.log(updatedTodoItemEmployee);
               const deleteTodoItemSuccessResponse = new BaseResponse(
                 "200",
@@ -220,11 +223,13 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
               res.status(200).send(deleteTodoItemSuccessResponse.toObject());
             }
           });
-          // if the item is in the done array, remove it
+
+          // If the item is in the done array, remove it
         } else if (doneItem) {
+
           employee.done.id(doneItem._id).remove();
           employee.save(function (err, updatedDoneItemEmployee) {
-            // if there is an error in the database, return a 500 error
+
             if (err) {
               console.log(err);
               const deleteDoneItemMongoErrorResponse = new BaseResponse(
@@ -233,7 +238,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
                 err
               );
               res.status(501).send(deleteDoneItemMongoErrorResponse.toObject());
-              // if the database is able to find the employee by id then update the task
+
             } else {
               console.log(updatedDoneItemEmployee);
               const deleteDoneItemSuccessResponse = new BaseResponse(
@@ -244,7 +249,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
               res.status(200).send(deleteDoneItemSuccessResponse.toObject());
             }
           });
-          // if the item is not in the todo or done array, return a 404 error
+
         } else {
           console.log("Invalid taskId: " + req.params.taskId);
           const deleteTaskNotFoundResponse = new BaseResponse(
@@ -256,7 +261,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
         }
       }
     });
-    // catch any errors and log them to the console
+
   } catch (e) {
     console.log(e);
     const deleteTaskServerError = new BaseResponse(

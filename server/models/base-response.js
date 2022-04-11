@@ -8,7 +8,7 @@
 ===========================================
 */
 
-// base response model
+// Base response model
 class BaseResponse {
   constructor(code, msg, data) {
     this.code = code;

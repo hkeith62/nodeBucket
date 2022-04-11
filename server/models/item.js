@@ -11,7 +11,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// define the item schema
+// Define the item schema
 let itemSchema = new Schema({
   text: { type: String },
 });

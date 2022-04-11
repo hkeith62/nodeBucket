@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Item = require("./item");
 
-// Define our employee schema
+// Define the employee schema
 let employeeSchema = new Schema(
   {
     empId: { type: String, unique: true },
