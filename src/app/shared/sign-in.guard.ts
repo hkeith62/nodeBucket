@@ -31,9 +31,8 @@ export class SignInGuard implements CanActivate {
 
     //If the user is not authenticated, redirect to the sign-in page
     if (sessionUser) {
-      return true; // Allow use to navigate
+      return true;
     } else {
-      // Take to the sign-in page
       this.router.navigate(['/session/sign-in']);
       return false;
     }

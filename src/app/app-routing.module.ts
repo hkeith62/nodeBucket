@@ -27,19 +27,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [SignInGuard],
       },
       {
         path: 'how-it-works',
-        component: HowItWorksComponent
+        component: HowItWorksComponent,
+        canActivate: [SignInGuard],
       },
       {
         path: 'about',
-        component: AboutComponent
+        component: AboutComponent,
+        canActivate: [SignInGuard],
       },
       {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent,
+        canActivate: [SignInGuard],
       },
     ],
   },
