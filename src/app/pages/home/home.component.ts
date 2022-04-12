@@ -2,8 +2,8 @@
 ============================================
 ; Title:  home.component.ts
 ; Author: Professor Krasso
-; Modified by: Kevin Jones
-; Date: 25 Aug 2021
+; Date: 10 April 2022
+; Modified by: K Hall
 ; Description: Home component TS file
 ;===========================================
 */
