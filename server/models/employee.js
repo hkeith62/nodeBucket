@@ -15,7 +15,7 @@ const Item = require("./item");
 // Define the employee schema
 let employeeSchema = new Schema(
   {
-    empId: { type: String, unique: true },
+    empId: { type: String, unique: true, dropDups: true },
     firstName: { type: String },
     lastName: { type: String },
     todo: [Item],

@@ -39,6 +39,11 @@ mat-card-title {
 mat-card {
   margin-right: 28px;
 }
+mat-icon {
+  margin-bottom: 30px;
+  font-size: 20px;
+
+}
 .task-button {
   margin-top: 3px;
   font-size: 16px;
