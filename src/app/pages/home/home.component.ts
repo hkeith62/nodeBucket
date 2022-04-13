@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
       (res) => {
         console.log('--Server response from findAllTasks API --');
         console.log(res);
-        // set the todo and done arrays to the server response
+        
         this.employee = res;
         console.log('-- Employee Object');
         console.log(this.employee);
