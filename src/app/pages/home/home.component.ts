@@ -40,8 +40,9 @@ export class HomeComponent implements OnInit {
   ) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
 
-    // make call to task service findAllTasks
+    // Call the task service to findAllTasks
     this.taskService.findAllTasks(this.empId).subscribe(
+      
       (res) => {
         console.log('--Server response from findAllTasks API --');
         console.log(res);
