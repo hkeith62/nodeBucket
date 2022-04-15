@@ -84,7 +84,6 @@ export class HomeComponent implements OnInit {
       disableClose: true,
     });
 
-    // Call the task service to create a new task
     dialogRef.afterClosed().subscribe((data) => {
 
       // When the user clicks the create task button
