@@ -28,7 +28,7 @@
 
       <!-- Todo column -->
       <div fxFlex class="card-container">
-        <mat-card class="mat-elevation-z0">
+        <mat-card class="mat-elevation-z8">
           <mat-card-title> Todo</mat-card-title>
 
           <mat-card-content>
@@ -40,8 +40,8 @@
               #todoList="cdkDropList"
               [cdkDropListData]="todo"
               [cdkDropListConnectedTo]="[doingList, doneList]"
-              (cdkDropListDropped)="drop($event)"
-            >
+              (cdkDropListDropped)="drop($event)">
+
               <div *ngFor="let item of todo" cdkDrag>
                 <mat-card class="mat-elevation-z0 task-card">
                   <mat-card-content>
@@ -66,7 +66,7 @@
 
 	  <!-- Second column in row -->
       <div fxFlex class="card-container">
-        <mat-card class="mat-elevation-z0">
+        <mat-card class="mat-elevation-z8">
           <mat-card-title>Doing</mat-card-title>
 
           <mat-card-content>
@@ -103,7 +103,7 @@
 
       <!-- Done column -->
       <div fxFlex class="card-container">
-        <mat-card class="mat-elevation-z0">
+        <mat-card class="mat-elevation-z8">
           <mat-card-title> Done </mat-card-title>
 
           <mat-card-content>
