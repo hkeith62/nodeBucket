@@ -42,14 +42,11 @@ export class HomeComponent implements OnInit {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
 
     // Call the task service to findAllTasks
-
     this.taskService.findAllTasks(this.empId).subscribe(
 
       (res) => {
         console.log('--Server response from findAllTasks API --');
         console.log(res);
-
-        // Set the arrays to the server response
 
         this.employee = res;
         console.log('-- Employee Object');
@@ -61,9 +58,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
       () => {
-
         // Set the arrays/lists to the server response
-
         console.log('--onComplete of the findAllTasks service call--');
         this.todo = this.employee.todo;
 		    this.doing = this.employee.doing;
@@ -72,7 +67,7 @@ export class HomeComponent implements OnInit {
         console.log('--To do tasks--');
         console.log(this.todo);
 
-		    console.log('--Doing tasks--');
+		console.log('--Doing tasks--');
         console.log(this.doing);
 
         console.log('--Done tasks--');
@@ -95,6 +90,7 @@ export class HomeComponent implements OnInit {
       // When the user clicks the create task button
       if (data) {
 
+        // Call the task service to create a new task
         this.taskService.createTask(this.empId, data.text).subscribe(
 
           // Server response is successful
@@ -103,15 +99,6 @@ export class HomeComponent implements OnInit {
             // Set the arrays to the server response
             this.employee = res;
           },
-
-          (err) => {
-            console.log('--onError of the createTask service call--');
-
-            console.log(err);
-          },
-
-          () => {
-
           // If not successful
           (err) => {
             console.log('--onError of the createTask service call--');
@@ -122,7 +109,6 @@ export class HomeComponent implements OnInit {
           () => {
 
             // Set the arrays to the server response
-
             this.todo = this.employee.todo;
 		      	this.doing = this.employee.doing;
             this.done = this.employee.done;
@@ -139,7 +125,6 @@ export class HomeComponent implements OnInit {
     if (event.previousContainer === event.container) {
 
       // Move the item to the done column and update the task list in MongoDB
-
       moveItemInArray(
         event.container.data,
         event.previousIndex,
@@ -155,7 +140,6 @@ export class HomeComponent implements OnInit {
     } else {
 
       // Move the item to the todo list and update the task list in MongoDB
-
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -174,7 +158,6 @@ export class HomeComponent implements OnInit {
   deleteTask(taskId: string): void {
 
     // Confirm whether the user wants to delete the task
-
     if (confirm('Are you sure you want to delete this task?')) {
 
       // Call the task service to delete the task
@@ -189,11 +172,11 @@ export class HomeComponent implements OnInit {
           },
 
           (err) => {
-
+            // log the error
             console.log(err);
           },
           () => {
-
+            // set the todo and done arrays to the server response
             this.todo = this.employee.todo;
 			this.doing = this.employee.doing;
             this.done = this.employee.done;
@@ -221,9 +204,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
       },
       () => {
-
         // Set arrays
->>>>>>> main-dev
         this.todo = this.employee.todo;
 		this.doing = this.employee.doing;
         this.done = this.employee.done;
