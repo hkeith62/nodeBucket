@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
 
-    // Call the task service to findAllTasks
+    // Call the task service to findAllTasks for the employee id entered.
     this.taskService.findAllTasks(this.empId).subscribe(
 
       (res) => {
@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit {
           },
           () => {
 
-            // Set the arrays to the server response
+            // Set the arrays
             this.todo = this.employee.todo;
 		      	this.doing = this.employee.doing;
             this.done = this.employee.done;
@@ -205,7 +205,7 @@ export class HomeComponent implements OnInit {
       () => {
         // Set arrays
         this.todo = this.employee.todo;
-		this.doing = this.employee.doing;
+		    this.doing = this.employee.doing;
         this.done = this.employee.done;
       }
     );
