@@ -95,8 +95,6 @@ export class HomeComponent implements OnInit {
       // When the user clicks the create task button
       if (data) {
 
-        // Call the task service to create a new task
-
         this.taskService.createTask(this.empId, data.text).subscribe(
 
           // Server response is successful
