@@ -16,9 +16,10 @@
 .logo-container {
   margin-left: -10px;
   margin-top: 30px;
+  background-color: gray;
 }
 .link-container {
-  margin-left: 133%;
+  margin-left: 190%;
   margin-top: 40px;
 
 }
@@ -30,9 +31,11 @@
   font-size: 16px;
   font-weight: lighter;
   font-family: Roboto;
+  color:  black;
+
 }
 .sign-out-container {
-  margin-right: 1%;
+  margin-right: 3.5%;
 }
 .main-content {
   padding-left: 30px;
@@ -47,8 +50,8 @@
   font-weight: lighter;
   padding-left: 100px;
   letter-spacing: 3px;
-  margin-left: 50%;
-  margin-bottom: 1%;
+  margin-left: 25%;
+  margin-bottom: -1%;
 
 }
 .bu-link {

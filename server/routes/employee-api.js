@@ -48,7 +48,7 @@ router.get("/:empId/tasks", async (req, res) => {
   try {
     Employee.findOne(
       { empId: req.params.empId },
-      "empId todo done",
+      "empId todo doing done",
       function (err, employee) {
 
         if (err) {
@@ -131,6 +131,7 @@ router.put("/:empId/tasks", async (req, res) => {
         console.log(employee);
         employee.set({
           todo: req.body.todo,
+		  doing: req.body.doing,
           done: req.body.done,
         });
 
@@ -187,11 +188,17 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
       } else {
         console.log(employee);
 
-        // Check item arrays
+        // Check item arrays 
         const todoItem = employee.todo.find(
 
           (item) => item._id.toString() === req.params.taskId
         );
+		
+		const doingItem = employee.doing.find(
+		
+		  (item) => item._id.toString() === req.params.taskId
+		 );
+		
         const doneItem = employee.done.find(
           (item) => item._id.toString() === req.params.taskId
         );
@@ -224,7 +231,33 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
             }
           });
 
-          // If the item is in the done array, remove it
+         // If the item is in the doing array, remove it
+        } else if (doingItem) {
+
+          employee.doing.id(doingItem._id).remove();
+          employee.save(function (err, updatedDoingItemEmployee) {
+
+            if (err) {
+              console.log(err);
+              const deleteDoingItemMongoErrorResponse = new BaseResponse(
+                "501",
+                "Mongo sever error",
+                err
+              );
+              res.status(501).send(deleteDoingItemMongoErrorResponse.toObject());
+
+            } else {
+              console.log(updatedDoingItemEmployee);
+              const deleteDoingItemSuccessResponse = new BaseResponse(
+                "200",
+                "Item removed from Doing array",
+                updatedDoingItemEmployee
+              );
+              res.status(200).send(deleteDoingItemSuccessResponse.toObject());
+            }
+          });
+		  
+		// If the item is in the done array, remove it
         } else if (doneItem) {
 
           employee.done.id(doneItem._id).remove();
