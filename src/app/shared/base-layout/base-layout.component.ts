@@ -1,41 +1,55 @@
-/*
-============================================
-; Title:  base-layout.component.ts
-; Author: Professor Krasso
-; Date: 25 March 2022
-; Modified By: K. Hall
-; Description: Base layout component for NodeBucket App.
-;===========================================
-*/
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+
 
 @Component({
   selector: 'app-base-layout',
   templateUrl: './base-layout.component.html',
-  styleUrls: ['./base-layout.component.css'],
+  styleUrls: ['./base-layout.component.css']
 })
 export class BaseLayoutComponent implements OnInit {
+
   year: number = Date.now();
-  isLoggedIn: boolean; // Checks if a user is logged in.
-  name: string;
+  isLoggedIn: boolean;
+  username: string;
+  badgeCount: number;
+  userRole: any;
 
-  // Inject router and cookie service to this component
   constructor(private cookieService: CookieService, private router: Router) {
-
     this.isLoggedIn = this.cookieService.get('session_user') ? true : false;
-    this.name = sessionStorage.getItem('name');
-    console.log('Signed in as: ' + this.name);
+    console.log('isLoggedIn: ' + this.isLoggedIn);
+    this.badgeCount = 0;
+   }
+
+  ngOnInit(): void {
+    this.username = this.cookieService.get('session_user');
   }
 
-  ngOnInit(): void {}
+  isAdmin(): boolean {
+    return this.userRole.role === 'admin';
+  }
 
-  // Sign out and navigate back to sign-in page.
+  userConfig(): void {
+    this.router.navigate(['/users']);
+  }
+
+  questionConfig(): void {
+    this.router.navigate(['/security-questions']);
+  }
+
   signOut() {
-
     this.cookieService.deleteAll();
-    this.router.navigate(['/session/sign-in']);
+    this.router.navigate(['/session/signin']);
   }
+
+  roleConfig(): void{
+    this.router.navigate(['/roles']);
+  }
+
+  adminReport(): void {
+    this.router.navigate(['/purchases-by-service-graph'])
+  }
+
 }

@@ -1,51 +1,37 @@
-<!--
-    Title: base-layout.component.html
-    Author: Professor Krasso
-    Date: 25 March 2022
-    Modified By: Keith Hall
-    Description: Base layout html file for Nodebucket App.
--->
-
 <div fxLayout="column">
+
+  <!-- navigation -->
   <nav fxFlex>
-
-    <!-- navigation -->
-    <mat-toolbar>
-
+    <mat-toolbar color="primary">
       <!-- navbar container -->
       <div class="navbar-container">
-
         <!-- logo -->
-          <img class="logo-container" fxFlex="nogrow" src="../assets/nodebucketlogo.png" routerLink="/" width="200px" height="120px" id="logo">
+        <button class="logo" routerLink="/" mat-button>BCRS</button>
+        <button class="navbar-link" routerLink="/" mat-button>Home</button>
+        <button class="navbar-link" routerLink="/about" mat-button>About</button>
+        <button class="navbar-link" routerLink="/contact" mat-button>Contact</button>
 
-        <!-- Nav links -->
-        <div fxLayout="row" class="link-container">
-        <div><button class="navbar-link" routerLink="/" mat-button>Home</button></div>
-        <div><button class="navbar-link" routerLink="/about" mat-button>About</button></div>
-        <div><button class="navbar-link" routerLink="/contact" mat-button>Contact</button></div>
-        </div>
       </div>
       <div fxFlex></div>
-
-      <!-- profile menu -->
-      <div *ngIf="isLoggedIn" class="sign-out-container">
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="profileMenu"
-          aria-label="user profile menu"
-        >
-          <mat-icon color="primary" i class="material-icons md-36">perm_identity</mat-icon>
+      <div *ngIf="isLoggedIn">
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu">
+          <mat-icon class="menu">perm_identity</mat-icon>
         </button>
-
-        <mat-menu #profileMenu="matMenu">
-          <p style="padding: 10px">Signed in as {{ name }}</p>
+        <mat-menu #profileMenu>
+          <p style="padding: 10px;" class="menu">Singed in as
+              <span
+                style="font-weight: lighter;"
+              >{{ username }}</span
+          >
+      </p>
           <mat-divider></mat-divider>
-          <button mat-menu-item (click)="signOut()">
-            <mat-icon>logout</mat-icon>
-            <span>Sign out</span>
+          <button mat-menu-item (click)="signOut()" class="menu">
+            <mat-icon class="menu">logout</mat-icon>
+            <span class="menu">Sign-Out</span>
           </button>
         </mat-menu>
       </div>
+
     </mat-toolbar>
   </nav>
 
@@ -59,14 +45,12 @@
   <!-- footer -->
   <div fxFlex>
     <footer class="footer">
-      <mat-toolbar class="footer-content">
+      <mat-toolbar class="footer-content" color="primary">
         <p>
-          &copy; {{ year | date: "yyyy" }} - nodebucket -
-          <a href="https://www.bellevue.edu/" class="bu-link" target="_blank"
-            >Bellevue University</a
-          >
+          &copy; {{year | date: 'yyyy'}} - Bob's Computer Repair Shop - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
         </p>
       </mat-toolbar>
     </footer>
   </div>
+
 </div>
