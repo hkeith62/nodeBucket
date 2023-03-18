@@ -28,12 +28,14 @@
   font-size: 14px;
 }
 
+
 .task-container {
   width: 92%;
   margin: 0 auto;
   margin-top: -6%;
 
 }
+
 mat-card-title {
   font-size: 16px;
   font-family: Roboto;
@@ -41,7 +43,6 @@ mat-card-title {
 }
 mat-card {
   margin-right: 28px;
-
 
 
 }

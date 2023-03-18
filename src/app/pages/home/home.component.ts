@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
         console.log('--To do tasks--');
         console.log(this.todo);
 
-		console.log('--Doing tasks--');
+		    console.log('--Doing tasks--');
         console.log(this.doing);
 
         console.log('--Done tasks--');

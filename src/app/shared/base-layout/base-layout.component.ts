@@ -41,7 +41,7 @@ export class BaseLayoutComponent implements OnInit {
 
   signOut() {
     this.cookieService.deleteAll();
-    this.router.navigate(['/session/signin']);
+    this.router.navigate(['/session/sign-in']);
   }
 
   roleConfig(): void{

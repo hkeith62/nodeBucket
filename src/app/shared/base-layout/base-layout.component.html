@@ -3,10 +3,11 @@
   <!-- navigation -->
   <nav fxFlex>
     <mat-toolbar color="primary">
+      <button class="logo" routerLink="/" mat-button>NudeBucket</button>
       <!-- navbar container -->
       <div class="navbar-container">
         <!-- logo -->
-        <button class="logo" routerLink="/" mat-button>BCRS</button>
+
         <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <button class="navbar-link" routerLink="/about" mat-button>About</button>
         <button class="navbar-link" routerLink="/contact" mat-button>Contact</button>
@@ -47,7 +48,7 @@
     <footer class="footer">
       <mat-toolbar class="footer-content" color="primary">
         <p>
-          &copy; {{year | date: 'yyyy'}} - Bob's Computer Repair Shop - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
+          &copy; {{year | date: 'yyyy'}} - NodeBucket Task Organizer - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
         </p>
       </mat-toolbar>
     </footer>

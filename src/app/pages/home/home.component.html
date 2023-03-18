@@ -10,9 +10,6 @@
 
 <div fxLayout="column" class="main-container" fxLayoutGap="50px">
   <div fxFlex>
-    <h1 class="title">
-      NodeBucket ToDo List
-    </h1>
   </div>
 
  <!--Create task button-->
@@ -83,7 +80,7 @@
                 <mat-card class="mat-elevation-z0 task-card">
                   <mat-card-content>
                     <div fxLayout="row">
-                      <div fxFlex>
+                      <div fxFlex class="flex-container">
                         {{ item.text }}
                       </div>
                       <div fxFlex fxLayoutAlign="end">
