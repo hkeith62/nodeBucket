@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server": "nodemon ./server/app.js",
-    "start": "ng serve",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "localhost": "ng build && node ./server/app.js",
     "heroku-postbuild": "ng build --configuration=production"
   },
